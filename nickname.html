@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Nickname</title>
+    <style>
+        body {
+            background-color: rgb(29, 29, 29);
+            font-family: 'Courier New', Courier, monospace;
+        }
+        label{
+            color: white;  
+        }
+        input[type=text], select{
+            width: 100%;
+            padding:12px 14px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid rgb(146, 146, 146);
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=submit] {
+            font-family: 'Courier New', Courier, monospace;
+            width: 100%;
+            background-color: black;
+            color:white;
+            padding:14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        div{
+            width: 450px;
+            padding: 8px;
+            background-color: rgb(85, 85, 85);
+            border-radius: 4px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="form" action="">
+            <label for="name">Nickname</label>
+            <input type="text" name="nickname" placeholder="Nickname">
+    
+            <label for="colour">Colour</label>
+            <select id="colour" name="colour">
+                <option value="Red">Red</option>
+                <option value="Orange">Orange</option>
+                <option value="Yellow">Yellow</option>
+                <option value="Green">Green</option>
+                <option value="Blue">Blue</option>
+                <option value="Purple">Purple</option>
+            </select>
+
+            <input type="submit" value="Enter">
+        </form>
+        
+        
+    </div>
+</body>
+</html>
