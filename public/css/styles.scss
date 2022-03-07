@@ -1,4 +1,4 @@
-body{
+html, body{
     margin: 0px;
     height: 100%;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
@@ -51,7 +51,6 @@ input[type=submit] {
     width: 80%;
     height: 960px;
     float: left;
-    
     background-color: rgb(101, 98, 146);
     
     #form {
@@ -85,6 +84,7 @@ h1{
 }
 .userList{
     color: white;
+    overflow: hidden;
     text-align: center;
     background-color: rgb(41, 31, 78);
     height: 960px;
@@ -101,9 +101,9 @@ h1{
 }
 
 #messages { 
-    width: 80%;
     list-style-type: none; 
     margin: 0; 
-    padding: 0; }
+    padding: 0;
+overflow:auto; }
 #messages > li { padding: 0.5rem 1rem; }
-//messages > li:nth-child(odd) { background: #efefef; }
+#messages > li:nth-child(odd) { background: #efefef; }

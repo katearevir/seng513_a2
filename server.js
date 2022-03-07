@@ -6,6 +6,8 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 const bodyParser = require('body-parser');
 
+app.use(express.static(__dirname + '/public'));
+
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 var jsonParser = bodyParser.json();
 
@@ -15,17 +17,18 @@ var takenNames = [];
 var tmp;
 //send html doc to server
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/nickname.html');
+    res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/chat', (req, res) => {
-  res.sendFile(__dirname + '/index.html')
+  res.sendFile(__dirname + '/chat.html')
 });
 
 app.post('/register', urlencodedParser, (req, res) => {
   tmp = req.body.nickname;
   takenNames.push(tmp);
   console.log(takenNames);
+
   res.redirect('/chat');
 });
 

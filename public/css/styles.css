@@ -1,4 +1,4 @@
-body {
+html, body {
   margin: 0px;
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -91,6 +91,7 @@ h1 {
 
 .userList {
   color: white;
+  overflow: hidden;
   text-align: center;
   background-color: #291f4e;
   height: 960px;
@@ -111,13 +112,17 @@ h1 {
 }
 
 #messages {
-  width: 80%;
   list-style-type: none;
   margin: 0;
   padding: 0;
+  overflow: auto;
 }
 
 #messages > li {
   padding: 0.5rem 1rem;
+}
+
+#messages > li:nth-child(odd) {
+  background: #efefef;
 }
 /*# sourceMappingURL=styles.css.map */

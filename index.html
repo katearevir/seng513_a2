@@ -1,25 +1,49 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Socket.IO chat</title>
-    <link rel="stylesheet" href="styles/styles.css">
-  </head>
-  <body>
-    <div class="chat">
-      <div class="chatbox">
-        <ul id="messages"></ul>
-        <form id="form" action="">
-          <input id="input" autocomplete="off" /><button>Send</button>
-        </form>
-      </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Nickname</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
 
-      <div class="userList">
-        <h1>Online Users</h1>
-      </div>
+<body id="reg">
+    <div class="reg-container">
+        <form id="register" method="post" action="/register">
+            <label for="name">Nickname</label>
+            <input id="nickname" type="text" name="nickname">
+    
+            <label for="colour">Colour</label>
+            <select id="colour" name="colour">
+                <option value="Red">Red</option>
+                <option value="Orange">Orange</option>
+                <option value="Yellow">Yellow</option>
+                <option value="Green">Green</option>
+                <option value="Blue">Blue</option>
+                <option value="Purple">Purple</option>
+            </select>
+
+            <input type="submit" value="Enter">
+        </form>
+        
+        
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="client.js"></script>
+    <script>
+        var socket = io();
+    //nickname
+    var register = document.getElementById('register');
+    var nickname = document.getElementById('nickname');
 
-  </body>
+    register.addEventListener('submit', function(e) {
+        socket.emit('nickname', input.value);
+    });
+
+    socket.on('nickname', function(name) {
+        console.log("nickname: " + name);
+    });
+    </script>
+</body>
 </html>
