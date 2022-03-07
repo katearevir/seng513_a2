@@ -52,12 +52,23 @@ input[type=submit] {
 
 .chatbox {
   width: 80%;
-  height: 960px;
+  min-height: 760px;
+  height: 760px;
   float: left;
   background-color: #656292;
+  position: relative;
+  /*
+    > div{
+        width: 100%;
+        height: 200px;
+        overflow: auto;
+        position: absolute;
+        bottom: 0;
+    }
+    */
 }
 
-.chatbox #form {
+#form {
   width: 80%;
   background: black;
   padding: 0.25rem;
@@ -74,7 +85,7 @@ input[type=submit] {
           backdrop-filter: blur(10px);
 }
 
-.chatbox #form > button {
+#form > button {
   background: #333;
   border: none;
   padding: 0 1rem;
@@ -94,7 +105,7 @@ h1 {
   overflow: hidden;
   text-align: center;
   background-color: #291f4e;
-  height: 960px;
+  height: 800px;
 }
 
 #input {
@@ -116,6 +127,8 @@ h1 {
   margin: 0;
   padding: 0;
   overflow: auto;
+  position: absolute;
+  bottom: 0px;
 }
 
 #messages > li {

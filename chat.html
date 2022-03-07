@@ -8,10 +8,12 @@
     <div class="chat">
       <div class="chatbox">
         <ul id="messages"></ul>
-        <form id="form" action="">
+      </div>
+        
+      <form id="form" action="">
           <input id="input" autocomplete="off" /><button>Send</button>
         </form>
-      </div>
+      
 
       <div class="userList">
         <h1>Online Users</h1>
@@ -36,7 +38,7 @@ form.addEventListener('submit', function(e) {
             var item = document.createElement('li');
             item.textContent = msg;
             messages.appendChild(item);
-            body.scrollTop(0);
+            window.scrollTo(0,document.body.scrollHeight);
         });
 
     </script>
