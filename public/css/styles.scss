@@ -1,7 +1,8 @@
 html, body{
     margin: 0px;
     height: 100%;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(29, 29, 29);
 }
 
 #reg {
@@ -31,6 +32,12 @@ input[type=text]{
     border-radius: 4px;
 }  
 
+#changeColour {
+    height: 2.5rem;
+    vertical-align: middle;
+    border:rgb(85, 85, 85);
+}
+
 input[type=submit] {
     font-family: 'Courier New', Courier, monospace;
     width: 100%;
@@ -54,31 +61,35 @@ input[type=submit] {
     transform: translate(-50%, -50%);
 }
 
+.chat{
+    margin: 10px;
+    min-height: 720px;
+}
 .chatbox{
     width: 80%;
-    margin: 5px;
-    min-height: 680px;
+    margin-right: 7px;
+    min-height: 720px;
     height: auto;
     float: left;
-    background-color: rgb(101, 98, 146);
+    background-color: rgb(51, 51, 51);
     position: relative;
     border-radius: 4px;
 
 }
 
 .userList{
-    margin-top: 10px;
     color: white;
     overflow: hidden;
     text-align: center;
-    background-color: rgb(41, 31, 78);
-    min-height: 680px;
+    background-color: rgb(177, 154, 154);
+    min-height: 720px;
+    border-radius: 4px;
     height: auto;
 }
 
 #form {
     width: 100%;
-    background: rgb(0, 0, 0); 
+    background: rgb(177, 154, 154);
     padding: 0.25rem; 
     position: fixed; 
     bottom: 0; 
@@ -140,6 +151,13 @@ h1{
         background-color: black;
         color:white;
         border-radius: 4px;
+    }
+
+    > span {
+        margin-left: 5px;
+        color: rgb(175, 175, 175);
+        vertical-align: top;
+        font-size: 13px;
     }
 }
 //#messages > li:nth-child(odd) { background: #efefef; }

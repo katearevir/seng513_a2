@@ -96,7 +96,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('chat message', (message) => {
-    console.log('message: ' + message.split(" ")[0]);
 
     //Listen for colour change
     splitMsg = message.split(" ");
@@ -113,9 +112,13 @@ io.on('connection', (socket) => {
       }     
     }
     else {
+      var date = new Date();
+      var h = date.getHours();
+      var m = date.getMinutes();
       var details={
         name: takenNames[socket.id],
         colour: colours[socket.id],
+        date: h + ":" + m,
         msg: message
       };
       io.emit('chat message', details);

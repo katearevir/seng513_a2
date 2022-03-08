@@ -2,6 +2,7 @@ html, body {
   margin: 0px;
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1d1d1d;
 }
 
 #reg {
@@ -33,6 +34,12 @@ input[type=text] {
   border-radius: 4px;
 }
 
+#changeColour {
+  height: 2.5rem;
+  vertical-align: middle;
+  border: #555555;
+}
+
 input[type=submit] {
   font-family: 'Courier New', Courier, monospace;
   width: 100%;
@@ -57,30 +64,35 @@ input[type=submit] {
           transform: translate(-50%, -50%);
 }
 
+.chat {
+  margin: 10px;
+  min-height: 720px;
+}
+
 .chatbox {
   width: 80%;
-  margin: 5px;
-  min-height: 680px;
+  margin-right: 7px;
+  min-height: 720px;
   height: auto;
   float: left;
-  background-color: #656292;
+  background-color: #333333;
   position: relative;
   border-radius: 4px;
 }
 
 .userList {
-  margin-top: 10px;
   color: white;
   overflow: hidden;
   text-align: center;
-  background-color: #291f4e;
-  min-height: 680px;
+  background-color: #b19a9a;
+  min-height: 720px;
+  border-radius: 4px;
   height: auto;
 }
 
 #form {
   width: 100%;
-  background: black;
+  background: #b19a9a;
   padding: 0.25rem;
   position: fixed;
   bottom: 0;
@@ -152,5 +164,12 @@ h1 {
   background-color: black;
   color: white;
   border-radius: 4px;
+}
+
+#messages > span {
+  margin-left: 5px;
+  color: #afafaf;
+  vertical-align: top;
+  font-size: 13px;
 }
 /*# sourceMappingURL=styles.css.map */
