@@ -33,17 +33,21 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var socket = io();
-    //nickname
-    var register = document.getElementById('register');
-    var nickname = document.getElementById('nickname');
 
-    register.addEventListener('submit', function(e) {
-        socket.emit('nickname', input.value);
-    });
+var register = document.getElementById('register');
+var nickname = document.getElementById('nickname');
+var col_opt = document.getElementsById('colour');
+var i = col_opt.selectedIndex;
 
-    socket.on('nickname', function(name) {
-        console.log("nickname: " + name);
-    });
+register.addEventListener('submit', function(e) {
+    socket.emit('nickname', input.value);
+    socket.emit('colour', col_opt.options[i].text);
+});
+
+socket.on('nickname', function(name) {
+    console.log("nickname: " + name);
+});
+        
     </script>
 </body>
 </html>

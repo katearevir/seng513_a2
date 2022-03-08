@@ -122,6 +122,19 @@ h1 {
   outline: none;
 }
 
+#online {
+  list-style-type: none;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+#online > li {
+  text-align: left;
+  font-size: 17px;
+  padding: 0.5rem 1rem;
+}
+
 #messages {
   list-style-type: none;
   margin: 0;
@@ -133,9 +146,5 @@ h1 {
 
 #messages > li {
   padding: 0.5rem 1rem;
-}
-
-#messages > li:nth-child(odd) {
-  background: #efefef;
 }
 /*# sourceMappingURL=styles.css.map */
