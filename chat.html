@@ -9,8 +9,10 @@
       <div class="chatbox">
         <ul id="messages"></ul>
       </div>
-        
+
+      
         <form id="form" action="">
+          <input type="color" id="changeColour" name="colour">
           <input id="input" autocomplete="off" /><button>Send</button>
         </form>
       
@@ -24,41 +26,64 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io();
-        var form = document.getElementById('form');
-  var input = document.getElementById('input');
+      var form = document.getElementById('form');
+      var input = document.getElementById('input');
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-            if (input.value) {
-                socket.emit('chat message', input.value);
-                input.value = '';
-            }
-        });
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (input.value) {
+          socket.emit('chat message', input.value);
+          input.value = '';
+        }
+      });
 
+      var changeColour = document.getElementById('changeColour');
 
-        socket.on('user connect', function(msg) {
+      changeColour.addEventListener('change', (event) => {
+        socket.emit('colour change', changeColour.value);
+      });
+
+        //if user refreshes and disconnects, taken here
+        socket.on('register', function(page){
+          alert("Redirecting to registration page.")
+          window.location.href = page;
+        })
+
+        socket.on('user connect', function(name) {
             var item = document.createElement('li');
-            item.textContent = msg;
+            item.textContent = name + " has connected.";
             messages.appendChild(item);
             window.scrollTo(0,document.body.scrollHeight);
         });
 
-        socket.on('user list', function(name) {
-          var item = document.createElement('li');
-          item.textContent = name;
-          online.appendChild(item);
+        socket.on('user colour connect', function(colour){
+          changeColour.value = colour;
+        });
+
+        socket.on('user list', function(data){
+          //clear ul
+          document.getElementById("online").innerHTML = "";
+
+          //populate with online users
+          for (let name in data){
+            var item = document.createElement('li');
+            item.textContent = data[name];
+            online.appendChild(item);
+          }
         });
 
         socket.on('chat message', function(data) {
             var item = document.createElement('li');
-            var name = document.createElement("span");
             var message = document.createElement("span");
-            name.textContent = "[" + data.name + "]";
-            name.style.color = data.colour;
-            message.textContent = " " + data.msg;
-            item.appendChild(name);
+
+            message.textContent = data.name + ": " + data.msg;
+            //message.style.color = data.colour;
+
             item.appendChild(message);
+            item.style.backgroundColor = data.colour;
+
             messages.appendChild(item);
+
             window.scrollTo(0,document.body.scrollHeight);
         });
     </script>

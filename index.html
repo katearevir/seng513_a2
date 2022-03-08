@@ -15,14 +15,7 @@
             <input id="nickname" type="text" name="nickname">
     
             <label for="colour">Colour</label>
-            <select id="colour" name="colour">
-                <option value="Red">Red</option>
-                <option value="Orange">Orange</option>
-                <option value="Yellow">Yellow</option>
-                <option value="Green">Green</option>
-                <option value="Blue">Blue</option>
-                <option value="Purple">Purple</option>
-            </select>
+            <input type="color" id="colour" name="colour">
 
             <input type="submit" value="Enter">
         </form>
@@ -36,16 +29,11 @@
 
 var register = document.getElementById('register');
 var nickname = document.getElementById('nickname');
-var col_opt = document.getElementsById('colour');
-var i = col_opt.selectedIndex;
+var col = document.getElementsById('colour');
 
 register.addEventListener('submit', function(e) {
-    socket.emit('nickname', input.value);
-    socket.emit('colour', col_opt.options[i].text);
-});
-
-socket.on('nickname', function(name) {
-    console.log("nickname: " + name);
+    socket.emit('nickname', nickname.value);
+    socket.emit('colour', col.value);
 });
         
     </script>

@@ -14,7 +14,7 @@ html, body{
 label{
     color: white;  
 }
-input[type=text], select{
+input[type=text]{
     width: 100%;
     padding:12px 14px;
     margin: 8px 0;
@@ -23,6 +23,13 @@ input[type=text], select{
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+#colour {
+    width: 100%;
+    margin: 8px 0;
+    height: 50px;
+    border-radius: 4px;
+}  
 
 input[type=submit] {
     font-family: 'Courier New', Courier, monospace;
@@ -49,28 +56,28 @@ input[type=submit] {
 
 .chatbox{
     width: 80%;
-    min-height: 760px;
-    height: 760px;
-    //height: auto;
+    margin: 5px;
+    min-height: 680px;
+    height: auto;
     float: left;
     background-color: rgb(101, 98, 146);
     position: relative;
-    
-    //line-height:760px;
-    /*
-    > div{
-        width: 100%;
-        height: 200px;
-        overflow: auto;
-        position: absolute;
-        bottom: 0;
-    }
-    */
+    border-radius: 4px;
 
 }
 
+.userList{
+    margin-top: 10px;
+    color: white;
+    overflow: hidden;
+    text-align: center;
+    background-color: rgb(41, 31, 78);
+    min-height: 680px;
+    height: auto;
+}
+
 #form {
-    width: 80%;
+    width: 100%;
     background: rgb(0, 0, 0); 
     padding: 0.25rem; 
     position: fixed; 
@@ -96,13 +103,7 @@ h1{
     padding: 20px;
     margin: 0;
 }
-.userList{
-    color: white;
-    overflow: hidden;
-    text-align: center;
-    background-color: rgb(41, 31, 78);
-    height: 800px;
-}
+
 #input { 
     border: none; 
     padding: 0 1rem; 
@@ -132,6 +133,13 @@ h1{
     overflow: auto;
     position: absolute;
     bottom: 0px;
+
+    > li {
+        padding: 0.5rem 1rem;
+        margin: 5px;
+        background-color: black;
+        color:white;
+        border-radius: 4px;
+    }
 }
-#messages > li { padding: 0.5rem 1rem;}
 //#messages > li:nth-child(odd) { background: #efefef; }

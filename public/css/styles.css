@@ -15,7 +15,7 @@ label {
   color: white;
 }
 
-input[type=text], select {
+input[type=text] {
   width: 100%;
   padding: 12px 14px;
   margin: 8px 0;
@@ -24,6 +24,13 @@ input[type=text], select {
   border-radius: 4px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+#colour {
+  width: 100%;
+  margin: 8px 0;
+  height: 50px;
+  border-radius: 4px;
 }
 
 input[type=submit] {
@@ -52,24 +59,27 @@ input[type=submit] {
 
 .chatbox {
   width: 80%;
-  min-height: 760px;
-  height: 760px;
+  margin: 5px;
+  min-height: 680px;
+  height: auto;
   float: left;
   background-color: #656292;
   position: relative;
-  /*
-    > div{
-        width: 100%;
-        height: 200px;
-        overflow: auto;
-        position: absolute;
-        bottom: 0;
-    }
-    */
+  border-radius: 4px;
+}
+
+.userList {
+  margin-top: 10px;
+  color: white;
+  overflow: hidden;
+  text-align: center;
+  background-color: #291f4e;
+  min-height: 680px;
+  height: auto;
 }
 
 #form {
-  width: 80%;
+  width: 100%;
   background: black;
   padding: 0.25rem;
   position: fixed;
@@ -98,14 +108,6 @@ input[type=submit] {
 h1 {
   padding: 20px;
   margin: 0;
-}
-
-.userList {
-  color: white;
-  overflow: hidden;
-  text-align: center;
-  background-color: #291f4e;
-  height: 800px;
 }
 
 #input {
@@ -146,5 +148,9 @@ h1 {
 
 #messages > li {
   padding: 0.5rem 1rem;
+  margin: 5px;
+  background-color: black;
+  color: white;
+  border-radius: 4px;
 }
 /*# sourceMappingURL=styles.css.map */
