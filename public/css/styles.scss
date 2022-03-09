@@ -1,7 +1,7 @@
 html, body{
     margin: 0px;
     height: 100%;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: rgb(29, 29, 29);
 }
 
@@ -69,11 +69,22 @@ input[type=submit] {
     width: 80%;
     margin-right: 7px;
     min-height: 720px;
-    height: auto;
+    height: 720px;
     float: left;
     background-color: rgb(51, 51, 51);
-    position: relative;
+    position:relative;
     border-radius: 4px;
+
+    > div{
+        border-radius: 4px;
+        max-height: 100%;
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+        overflow-y: auto;
+        background-color: rgb(51, 51, 51);
+    }
+    
 
 }
 
@@ -115,6 +126,12 @@ h1{
     margin: 0;
 }
 
+.divider {
+    border-top: 6px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    width: 20%;
+}
+
 #input { 
     border: none; 
     padding: 0 1rem; 
@@ -138,11 +155,10 @@ h1{
     }
 }
 #messages { 
-    list-style-type: none; 
+    list-style-type: none;
+    width: 80%;
     margin: 0; 
     padding: 0;
-    overflow: auto;
-    position: absolute;
     bottom: 0px;
 
     > li {
@@ -160,4 +176,16 @@ h1{
         font-size: 13px;
     }
 }
-//#messages > li:nth-child(odd) { background: #efefef; }
+
+//Mobile
+@media screen and (max-width: 768px) {
+    h1{
+        padding: 10px;
+        margin: 0;
+        font-size: 20px;
+    }
+
+    .chatbox{
+        width: 75%;
+    }
+}

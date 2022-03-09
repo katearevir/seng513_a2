@@ -7,7 +7,7 @@
   <body>
     <div class="chat">
       <div class="chatbox">
-        <ul id="messages">
+        <div id="ulDiv"><ul id="messages"></ul></div>
         </ul>
       </div>
 
@@ -19,6 +19,9 @@
 
       <div class="userList">
         <h1>Online Users</h1>
+
+        <hr class="divider" bg-col>
+
         <ul id="online"></ul>
       </div>
     </div>
@@ -85,7 +88,9 @@
             messages.appendChild(item);
             messages.appendChild(date);
 
-            window.scrollTo(0,document.body.scrollHeight);
+            var ulDiv = document.getElementById("ulDiv");
+            ulDiv.scrollTo(0, ulDiv.scrollHeight)
+            //window.scrollTo(0,document.body.scrollHeight);
         });
     </script>
 
