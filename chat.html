@@ -76,7 +76,34 @@
         });
 
         socket.on('chat message', function(data) {
-            var item = document.createElement('li');
+          document.getElementById("messages").innerHTML = "";
+
+            for(let chat in data){
+              var item = document.createElement('li');
+              
+              if (data[chat].date !== "")
+              {
+                var date = document.createElement("span");
+                item.textContent = data[chat].name + ": " + data[chat].msg;
+                item.style.backgroundColor = data[chat].colour;
+                date.textContent = data[chat].date;
+                messages.appendChild(item);
+                messages.appendChild(date);
+              }
+              else
+              {
+                item.textContent = data[chat].name + data[chat].msg;
+                item.style.backgroundColor = data[chat].colour;
+                messages.appendChild(item);
+
+              }
+              
+              var ulDiv = document.getElementById("ulDiv");
+              ulDiv.scrollTo(0, ulDiv.scrollHeight);
+            }
+          
+          /*
+          var item = document.createElement('li');
             //var message = document.createElement("span");
             var date = document.createElement("span");
 
@@ -88,9 +115,10 @@
             messages.appendChild(item);
             messages.appendChild(date);
 
+            //scroll to bottom of 
             var ulDiv = document.getElementById("ulDiv");
-            ulDiv.scrollTo(0, ulDiv.scrollHeight)
-            //window.scrollTo(0,document.body.scrollHeight);
+            ulDiv.scrollTo(0, ulDiv.scrollHeight);
+            */
         });
     </script>
 

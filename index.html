@@ -29,7 +29,7 @@
 
 var register = document.getElementById('register');
 var nickname = document.getElementById('nickname');
-var col = document.getElementsById('colour');
+var col = document.getElementById('colour');
 
 register.addEventListener('submit', function(e) {
     socket.emit('nickname', nickname.value);

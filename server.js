@@ -9,12 +9,13 @@ const bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/public'));
 
 var urlencodedParser = bodyParser.urlencoded({extended: false});
-var jsonParser = bodyParser.json();
 
 var defaultNames = ["Bob", "Alice", "John", "Jane", "Charlie", "Dakota", "River",
                     "James", "Robert", "William", "Foo", "Bar", "Ramirez", "Marin"];
 var takenNames = {};
 var colours = {};
+var chatHist = {};
+var indexHist = 0;
 
 var tmpName;
 var tmpColour;
@@ -68,9 +69,21 @@ io.on('connection', (socket) => {
     takenNames[socket.id] = tmpName;
     colours[socket.id] = tmpColour;
     tmpName = "";
-    io.emit('user connect', takenNames[socket.id]);
+
+    //put in chat history
+    var details={
+      name: takenNames[socket.id],
+      colour: "#000000",
+      date: "",
+      msg: " has connected."
+    };
+    chatHist[indexHist] = details;
+    indexHist++;
+    io.emit('chat message', chatHist);
+
     socket.emit('user colour connect', colours[socket.id]);
     io.emit('user list', takenNames);
+    io.emit('chat message', chatHist);
   }
 
   //if page is refreshed in localhost:3000/chat, take user to registration page
@@ -115,13 +128,22 @@ io.on('connection', (socket) => {
       var date = new Date();
       var h = date.getHours();
       var m = date.getMinutes();
+      if (h < 10){
+        h = "0" + h;
+      }
+      if (m < 10){
+        m = "0" + m;
+      }
+
       var details={
         name: takenNames[socket.id],
         colour: colours[socket.id],
         date: h + ":" + m,
         msg: message
       };
-      io.emit('chat message', details);
+      chatHist[indexHist] = details;
+      indexHist++;
+      io.emit('chat message', chatHist);
     }
     
   });
