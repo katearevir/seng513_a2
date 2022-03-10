@@ -10,8 +10,10 @@ app.use(express.static(__dirname + '/public'));
 
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
-var defaultNames = ["Bob", "Alice", "John", "Jane", "Charlie", "Dakota", "River",
-                    "James", "Robert", "William", "Foo", "Bar", "Ramirez", "Marin"];
+var defaultNames = ["Bob", "Alice", "John Doe", "Jane Doe", "Charlie", "Dakota", "River",
+                    "James", "Robert", "William", "Foo", "Bar", "Ramirez", "Marin",
+                    "Anon", "Space", "Mouse", "Alpha", "Apple", "Orange", "Zed",
+                    "De Fault", "Running Out", "Oh No", "Last One"];
 var takenNames = {};
 var colours = {};
 var chatHist = {};
@@ -48,8 +50,6 @@ app.post('/register', urlencodedParser, (req, res) => {
   else{
     tmpName = req.body.nickname;
     tmpColour = req.body.colour;
-    
-    console.log(tmpName);
 
     //if name is empty
     if (!(/\S/.test(tmpName))){
@@ -71,8 +71,6 @@ io.on('connection', (socket) => {
     colours[socket.id] = tmpColour;
     tmpName = "";
 
-    //https://stackoverflow.com/questions/53073626/how-to-send-an-array-through-socket-io
-    //Author: Baboo
     //put in chat history
     var details={
       name: takenNames[socket.id],
@@ -82,9 +80,12 @@ io.on('connection', (socket) => {
     };
     chatHist[indexHist] = details;
     indexHist++;
+    
+    //https://stackoverflow.com/questions/53073626/how-to-send-an-array-through-socket-io (initally had array, changed to dictionary)
+    //Author: Baboo
     io.emit('chat message', chatHist);
 
-    socket.emit('user colour connect', colours[socket.id]); //send user's colour choice when first connected
+    socket.emit('user colour connect', colours[socket.id]); //send user's colour choice when first connected 
     io.emit('user list', takenNames); //update user list
     io.emit('chat message', chatHist); //update chat history
   }
@@ -115,16 +116,20 @@ io.on('connection', (socket) => {
   socket.on('chat message', (message) => {
 
     //change nickname (format: /nick name)
-    splitMsg = message.split(" ");
-    if (splitMsg[0] === "/nick" && splitMsg[1] !== "undefined"){
+    //https://stackoverflow.com/questions/10272773/split-string-on-the-first-white-space-occurrence
+    //Author: Trott
+    var command = message.substring(0, message.indexOf(' '));
+    var newName = message.substring(message.indexOf(' ') + 1);
+
+    if (command === "/nick" && !(/\S/.test(tmpName))){
       var taken = false;
       for (let name in takenNames){
-        if (splitMsg[1].toLowerCase() === takenNames[name].toLowerCase())
+        if (newName.toLowerCase() === takenNames[name].toLowerCase())
         taken = true;
       }
       if (!taken)
       {
-        takenNames[socket.id] = splitMsg[1];
+        takenNames[socket.id] = newName;
         io.emit('user list', takenNames); //update user list
       }     
     }
