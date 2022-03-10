@@ -7,7 +7,7 @@
 
 ## Notes on Nickname and Colour
 - On the registration page, hit Enter for default name and colour.
-- To change the name of the user, type `/nick name` in the chat and hit Send.
+- To change the name of the user, type `/nick new name` (name can have spaces) in the chat and hit Send.
 - To change the colour, the button on the left side of the message input will modify the colour of the message (not necessary to hit Send, but future messages are the only ones changed).
 
 ## Starter Code
