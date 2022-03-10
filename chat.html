@@ -32,6 +32,7 @@
       var form = document.getElementById('form');
       var input = document.getElementById('input');
 
+      //Listen for submit form
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         if (input.value) {
@@ -40,86 +41,62 @@
         }
       });
 
+      //Listen for colour change for input type color
       var changeColour = document.getElementById('changeColour');
 
       changeColour.addEventListener('change', (event) => {
         socket.emit('colour change', changeColour.value);
       });
 
-        //if user refreshes and disconnects, taken here
-        socket.on('register', function(page){
-          alert("Redirecting to registration page.")
-          window.location.href = page;
-        })
+      //if user refreshes and reconnects in chat, taken here
+      socket.on('register', function(page){
+        alert("Redirecting to registration page.")
+        window.location.href = page;
+      })
 
-        socket.on('user connect', function(name) {
+      //value of user's colour when connected
+      socket.on('user colour connect', function(colour){
+        changeColour.value = colour;
+      });
+
+      //update user list
+      socket.on('user list', function(data){
+        //clear ul
+        document.getElementById("online").innerHTML = "";
+
+        //populate with online users
+        for (let name in data){
+          var item = document.createElement('li');
+          item.textContent = data[name];
+          online.appendChild(item);
+        }
+      });
+
+      //Listen for chat messages
+      socket.on('chat message', function(data) {
+        document.getElementById("messages").innerHTML = "";
+
+          for(let chat in data){
             var item = document.createElement('li');
-            item.textContent = name + " has connected.";
-            messages.appendChild(item);
-            window.scrollTo(0,document.body.scrollHeight);
-        });
-
-        socket.on('user colour connect', function(colour){
-          changeColour.value = colour;
-        });
-
-        socket.on('user list', function(data){
-          //clear ul
-          document.getElementById("online").innerHTML = "";
-
-          //populate with online users
-          for (let name in data){
-            var item = document.createElement('li');
-            item.textContent = data[name];
-            online.appendChild(item);
-          }
-        });
-
-        socket.on('chat message', function(data) {
-          document.getElementById("messages").innerHTML = "";
-
-            for(let chat in data){
-              var item = document.createElement('li');
               
-              if (data[chat].date !== "")
-              {
-                var date = document.createElement("span");
-                item.textContent = data[chat].name + ": " + data[chat].msg;
-                item.style.backgroundColor = data[chat].colour;
-                date.textContent = data[chat].date;
-                messages.appendChild(item);
-                messages.appendChild(date);
-              }
-              else
-              {
-                item.textContent = data[chat].name + data[chat].msg;
-                item.style.backgroundColor = data[chat].colour;
-                messages.appendChild(item);
-
-              }
+            if (data[chat].date !== ""){
+              var date = document.createElement("span");
+              item.textContent = data[chat].name + ": " + data[chat].msg;
+              item.style.backgroundColor = data[chat].colour;
+              date.textContent = data[chat].date;
+              messages.appendChild(item);
+              messages.appendChild(date);
+            }
+            else{ //if user connects ("___ has connected")
+              item.textContent = data[chat].name + data[chat].msg;
+              item.style.backgroundColor = data[chat].colour;
+              messages.appendChild(item);
+            }
               
               var ulDiv = document.getElementById("ulDiv");
-              ulDiv.scrollTo(0, ulDiv.scrollHeight);
-            }
-          
-          /*
-          var item = document.createElement('li');
-            //var message = document.createElement("span");
-            var date = document.createElement("span");
-
-            item.textContent = data.name + ": " + data.msg;
-            item.style.backgroundColor = data.colour;
-
-            date.textContent = data.date;
-
-            messages.appendChild(item);
-            messages.appendChild(date);
-
-            //scroll to bottom of 
-            var ulDiv = document.getElementById("ulDiv");
-            ulDiv.scrollTo(0, ulDiv.scrollHeight);
-            */
-        });
+              ulDiv.scrollTo(0, ulDiv.scrollHeight); //scroll to bottom of chat
+          }
+      });
     </script>
 
   </body>

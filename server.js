@@ -51,6 +51,7 @@ app.post('/register', urlencodedParser, (req, res) => {
     
     console.log(tmpName);
 
+    //if name is empty
     if (!(/\S/.test(tmpName))){
       tmpName = defaultNames[0];
       defaultNames.shift();
@@ -70,6 +71,8 @@ io.on('connection', (socket) => {
     colours[socket.id] = tmpColour;
     tmpName = "";
 
+    //https://stackoverflow.com/questions/53073626/how-to-send-an-array-through-socket-io
+    //Author: Baboo
     //put in chat history
     var details={
       name: takenNames[socket.id],
@@ -81,9 +84,9 @@ io.on('connection', (socket) => {
     indexHist++;
     io.emit('chat message', chatHist);
 
-    socket.emit('user colour connect', colours[socket.id]);
-    io.emit('user list', takenNames);
-    io.emit('chat message', chatHist);
+    socket.emit('user colour connect', colours[socket.id]); //send user's colour choice when first connected
+    io.emit('user list', takenNames); //update user list
+    io.emit('chat message', chatHist); //update chat history
   }
 
   //if page is refreshed in localhost:3000/chat, take user to registration page
@@ -108,9 +111,10 @@ io.on('connection', (socket) => {
     colours[socket.id] = colour;
   });
 
+  //Listen for chat messages
   socket.on('chat message', (message) => {
 
-    //Listen for colour change
+    //change nickname (format: /nick name)
     splitMsg = message.split(" ");
     if (splitMsg[0] === "/nick" && splitMsg[1] !== "undefined"){
       var taken = false;
@@ -121,10 +125,11 @@ io.on('connection', (socket) => {
       if (!taken)
       {
         takenNames[socket.id] = splitMsg[1];
-        io.emit('user list', takenNames);
+        io.emit('user list', takenNames); //update user list
       }     
     }
     else {
+      //get date of chat msg
       var date = new Date();
       var h = date.getHours();
       var m = date.getMinutes();
@@ -135,12 +140,14 @@ io.on('connection', (socket) => {
         m = "0" + m;
       }
 
+      //put in chat history
       var details={
         name: takenNames[socket.id],
         colour: colours[socket.id],
         date: h + ":" + m,
         msg: message
       };
+
       chatHist[indexHist] = details;
       indexHist++;
       io.emit('chat message', chatHist);
@@ -149,6 +156,7 @@ io.on('connection', (socket) => {
   });
 });
 
+//Listen on port 3000
 server.listen(3000, () => {
   console.log('listening on *:3000');
 });

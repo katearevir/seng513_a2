@@ -27,14 +27,15 @@
     <script>
         var socket = io();
 
-var register = document.getElementById('register');
-var nickname = document.getElementById('nickname');
-var col = document.getElementById('colour');
+        var register = document.getElementById('register');
+        var nickname = document.getElementById('nickname');
+        var col = document.getElementById('colour');
 
-register.addEventListener('submit', function(e) {
-    socket.emit('nickname', nickname.value);
-    socket.emit('colour', col.value);
-});
+        //send nickname and colour choice to server
+        register.addEventListener('submit', function(e) {
+            socket.emit('nickname', nickname.value);
+            socket.emit('colour', col.value);
+        });
         
     </script>
 </body>

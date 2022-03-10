@@ -66,14 +66,13 @@ input[type=submit] {
 
 .chat {
   margin: 10px;
-  min-height: 720px;
+  height: 92%;
 }
 
 .chatbox {
   width: 80%;
   margin-right: 7px;
-  min-height: 720px;
-  height: 720px;
+  height: 100%;
   float: left;
   background-color: #333333;
   position: relative;
@@ -95,9 +94,8 @@ input[type=submit] {
   overflow: hidden;
   text-align: center;
   background-color: #b19a9a;
-  min-height: 720px;
   border-radius: 4px;
-  height: auto;
+  height: 100%;
 }
 
 #form {

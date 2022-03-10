@@ -61,15 +61,17 @@ input[type=submit] {
     transform: translate(-50%, -50%);
 }
 
+//https://stackoverflow.com/questions/38066204/prevent-child-div-from-overflowing-parent-div
+//Author: Maherbs
 .chat{
     margin: 10px;
-    min-height: 720px;
+    height: 92%
+
 }
 .chatbox{
     width: 80%;
     margin-right: 7px;
-    min-height: 720px;
-    height: 720px;
+    height: 100%;
     float: left;
     background-color: rgb(51, 51, 51);
     position:relative;
@@ -93,9 +95,8 @@ input[type=submit] {
     overflow: hidden;
     text-align: center;
     background-color: rgb(177, 154, 154);
-    min-height: 720px;
     border-radius: 4px;
-    height: auto;
+    height: 100%;
 }
 
 #form {
