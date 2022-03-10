@@ -159,13 +159,16 @@ h1 {
 
 #online > li {
   text-align: left;
-  font-size: 17px;
+  font-size: 20px;
   padding: 0.5rem 1rem;
 }
 
 #messages {
   list-style-type: none;
-  width: 80%;
+  width: 90%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   margin: 0;
   padding: 0;
   bottom: 0px;
@@ -194,6 +197,9 @@ h1 {
   }
   .chatbox {
     width: 75%;
+  }
+  #online > li {
+    font-size: 17px;
   }
 }
 /*# sourceMappingURL=styles.css.map */

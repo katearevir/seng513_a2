@@ -5,6 +5,7 @@ html, body{
     background-color: rgb(29, 29, 29);
 }
 
+//body for registration
 #reg {
     background-color: rgb(29, 29, 29);
     margin: 0; 
@@ -15,6 +16,7 @@ html, body{
 label{
     color: white;  
 }
+
 input[type=text]{
     width: 100%;
     padding:12px 14px;
@@ -90,6 +92,7 @@ input[type=submit] {
 
 }
 
+//Style for user list
 .userList{
     color: white;
     overflow: hidden;
@@ -99,6 +102,7 @@ input[type=submit] {
     height: 100%;
 }
 
+//style message sending
 #form {
     width: 100%;
     background: rgb(177, 154, 154);
@@ -133,6 +137,7 @@ h1{
     width: 20%;
 }
 
+//Style for chat input
 #input { 
     border: none; 
     padding: 0 1rem; 
@@ -144,6 +149,7 @@ h1{
     }
 }
 
+//Style for user list
 #online {
     list-style-type: none;
     color: white;
@@ -151,17 +157,21 @@ h1{
     padding: 0;
     > li {
         text-align: left;
-        font-size: 17px;
+        font-size: 20px;
         padding: 0.5rem 1rem;
     }
 }
+
+//Style for message history
 #messages { 
     list-style-type: none;
-    width: 80%;
+    width: 90%;
+    height: fit-content;
     margin: 0; 
     padding: 0;
     bottom: 0px;
 
+    //span
     > li {
         padding: 0.5rem 1rem;
         margin: 5px;
@@ -188,5 +198,11 @@ h1{
 
     .chatbox{
         width: 75%;
+    }
+
+    #online {
+        > li {
+            font-size: 17px;
+        }
     }
 }
